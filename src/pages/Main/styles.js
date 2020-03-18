@@ -1,24 +1,22 @@
 import styled from 'styled-components/native';
 
-export const Container = styled.ImageBackground`
-  justify-content: center;
-  align-items: center;
-  padding: 0 20px;
+import background1 from '~/assets/backgrounds/background1.png';
+import { colors } from '~/styles';
+
+export const BackgroundImage = styled.Image.attrs({
+  source: background1,
+})`
+  position: absolute;
+  z-index: 0;
+  bottom: 0;
+  left: 0;
+`;
+
+export const Container = styled.View`
   flex: 1;
 `;
 
-export const Author = styled.View``;
-
-export const Welcome = styled.Text`
-  color: #fff;
-  font-size: 22px;
-  font-weight: bold;
-  text-align: center;
-`;
-
-export const Instructions = styled.Text`
-  color: #f7f7f7;
-  font-size: 14px;
-  margin-top: 20px;
-  text-align: center;
+export const IdentCards = styled.View`
+  background: transparent;
+  margin-left: 10%;
 `;

@@ -1,28 +1,24 @@
 import React from 'react';
+import { View } from 'react-native';
 
-import { Container, Author, Welcome, Instructions } from './styles';
+import CardTopic from '~/components/CardTopic';
+import Header from '~/components/Header';
 
-const Main = () => (
-  <Container
-    source={{
-      uri:
-        'https://i.pinimg.com/564x/ae/46/ea/ae46ea4952fe1e707e25bdaa9bcded79.jpg',
-    }}
-    resizeMode="cover"
-  >
-    <Author>
-      <Welcome>Github.com/Manogel</Welcome>
-      <Welcome style={{ marginTop: 15 }}>
-        Welcome to the advanced model!
-      </Welcome>
-    </Author>
+import { Container, BackgroundImage, IdentCards } from './styles';
 
-    <Instructions>Favorite this repository</Instructions>
-    <Instructions>You can start by editing the file:</Instructions>
-    <Instructions style={{ fontWeight: 'bold', marginTop: 5 }}>
-      src/pages/Main/index.js
-    </Instructions>
-  </Container>
-);
+export default function Main() {
+  return (
+    <>
+      <Header />
 
-export default Main;
+      <BackgroundImage />
+      <Container>
+        <IdentCards>
+          {[1, 1, 1, 1, 11, 1, 1, 1, 1].map(i => (
+            <CardTopic />
+          ))}
+        </IdentCards>
+      </Container>
+    </>
+  );
+}
