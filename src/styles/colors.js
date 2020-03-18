@@ -19,7 +19,7 @@ export default {
   subtitle: '#383838',
   title: '#656565',
 
-  background: '#F9F9F9',
+  background: '#EFEFEF',
   transparent: 'transparent',
   darkTransparent: 'rgba(0, 0, 0, 0.6)',
   whiteTransparent: 'rgba(255, 255, 255, 0.3)',

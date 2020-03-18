@@ -3,9 +3,11 @@ import { StatusBar } from 'react-native';
 import '~/config/ReactotronConfig';
 import { Provider } from 'react-redux';
 
+import './scripts/validation';
 import createNavigator from '~/routes';
 
 import store from './store';
+import { colors } from './styles';
 
 export default function App() {
   const [userLogged, setUserLogged] = useState(false);
@@ -19,7 +21,7 @@ export default function App() {
 
   return (
     <Provider store={store}>
-      <StatusBar backgroundColor="#111" barStyle="light-content" />
+      <StatusBar barStyle="light-content" />
       <Routes />
     </Provider>
   );
