@@ -12,7 +12,12 @@ export const BackgroundImage = styled.Image.attrs({
   left: 0;
 `;
 
-export const Container = styled.View`
+export const Container = styled.ScrollView.attrs({
+  contentContainerStyle: {
+    paddingBottom: 20,
+  },
+  showsVerticalScrollIndicator: false,
+})`
   flex: 1;
 `;
 

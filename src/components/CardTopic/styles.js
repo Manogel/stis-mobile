@@ -17,7 +17,9 @@ export const BorderGradient = styled(LinearGradient).attrs({
   border-top-left-radius: 2px;
 `;
 
-export const Container = styled.View`
+export const Container = styled.TouchableOpacity.attrs({
+  activeOpacity: 0.7,
+})`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;

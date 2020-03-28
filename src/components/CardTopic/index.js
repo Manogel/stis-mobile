@@ -1,11 +1,16 @@
 import React from 'react';
 import ADIcon from 'react-native-vector-icons/AntDesign';
+import { withNavigation } from 'react-navigation';
 
 import { BorderGradient, Container, Info, Title, Introduction } from './styles';
 
-export default function CardTopic() {
+function CardTopic({ navigation }) {
   return (
-    <Container>
+    <Container
+      onPress={() =>
+        navigation.navigate('Detail', { topic: { id: 1, name: 'Ola' } })
+      }
+    >
       <BorderGradient />
       <Info>
         <Title>AAAaaaaa</Title>
@@ -18,3 +23,5 @@ export default function CardTopic() {
     </Container>
   );
 }
+
+export default withNavigation(CardTopic);
