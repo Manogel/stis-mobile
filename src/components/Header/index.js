@@ -4,6 +4,7 @@ import FAIcon from 'react-native-vector-icons/FontAwesome5';
 import FTIcon from 'react-native-vector-icons/Fontisto';
 import { withNavigation } from 'react-navigation';
 
+import ChangeLanguage from '../ChangeLanguage';
 import {
   Container,
   Gradient,
@@ -17,6 +18,7 @@ import {
 
 function Header({ title, goBack, navigation: { navigate } }) {
   const [isActive, setActive] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
   const [heightProgress] = useState(new Animated.Value(0));
 
   useEffect(() => {
@@ -31,7 +33,7 @@ function Header({ title, goBack, navigation: { navigate } }) {
         duration: 300,
       }).start();
     }
-  }, [isActive]);
+  }, [heightProgress, isActive]);
 
   const functionLeft = goBack !== false ? goBack : () => setActive(!isActive);
 
@@ -56,6 +58,7 @@ function Header({ title, goBack, navigation: { navigate } }) {
         }),
       }}
     >
+      <ChangeLanguage visible={modalVisible} setVisible={setModalVisible} />
       <Gradient>
         <Content>
           <ButtonLeft onPress={() => functionLeft()}>
@@ -87,7 +90,7 @@ function Header({ title, goBack, navigation: { navigate } }) {
             <LabelAction>Buscar</LabelAction>
           </Action>
 
-          <Action>
+          <Action onPress={() => setModalVisible(true)}>
             <FAIcon color="#EFEFEF" size={18} name="language" />
             <LabelAction>Idioma</LabelAction>
           </Action>

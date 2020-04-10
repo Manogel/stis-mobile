@@ -28,6 +28,13 @@ export const Container = styled.TouchableOpacity.attrs({
   border-bottom-left-radius: 2px;
   border-top-left-radius: 2px;
   margin-top: 20px;
+
+  shadow-color: #000;
+  shadow-offset: 0 2px;
+  shadow-opacity: 0.25;
+  shadow-radius: 3.84px;
+
+  elevation: 5;
 `;
 
 export const Info = styled.View`
