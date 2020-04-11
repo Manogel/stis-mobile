@@ -66,6 +66,13 @@ export const Card = styled.View`
   background: #fff;
   padding-right: 10px;
   border-radius: 2px;
+
+  shadow-color: #000;
+  shadow-offset: 0 2px;
+  shadow-opacity: 0.25;
+  shadow-radius: 3.84px;
+
+  elevation: 5;
 `;
 
 export const Info = styled.View`

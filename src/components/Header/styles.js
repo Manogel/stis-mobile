@@ -14,12 +14,14 @@ export const Container = styled(Animated.View)`
   shadow-radius: 3.84px;
   z-index: 5;
   elevation: 5;
+  margin-bottom: 25px;
 
   ${({ isActive }) =>
     isActive &&
     css`
       border-bottom-left-radius: 1px;
       border-bottom-right-radius: 1px;
+      margin-bottom: 0;
     `}
 `;
 

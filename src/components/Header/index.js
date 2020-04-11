@@ -4,6 +4,8 @@ import FAIcon from 'react-native-vector-icons/FontAwesome5';
 import FTIcon from 'react-native-vector-icons/Fontisto';
 import { withNavigation } from 'react-navigation';
 
+import { colors } from '~/styles';
+
 import ChangeLanguage from '../ChangeLanguage';
 import {
   Container,
@@ -53,7 +55,7 @@ function Header({ title, goBack, navigation: { navigate } }) {
       style={{
         height: heightProgress.interpolate({
           inputRange: [0, 100],
-          outputRange: [110, 190],
+          outputRange: [70, 180],
           extrapolate: 'clamp',
         }),
       }}
