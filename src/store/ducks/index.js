@@ -1,8 +1,9 @@
 import { combineReducers } from 'redux';
 
+import { reducer as topics } from './topics';
+
 const reducers = combineReducers({
-  // Remova essa linha depois de adicionar seus ducks
-  example: () => [],
+  topics,
 });
 
 export default reducers;

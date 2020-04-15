@@ -3,7 +3,13 @@ import Html from 'react-native-render-html';
 import styled, { css } from 'styled-components/native';
 
 import background2 from '~/assets/backgrounds/background2.png';
-import { colors, NunitoBold, PlatformType, metrics } from '~/styles';
+import {
+  colors,
+  NunitoBold,
+  PlatformType,
+  metrics,
+  NunitoSemiBold,
+} from '~/styles';
 
 export const BackgroundImage = styled.Image.attrs({
   source: background2,
@@ -53,12 +59,14 @@ export const Button = styled.TouchableOpacity.attrs({
 export const ButtonName = styled(NunitoBold)`
   font-size: 16px;
   text-align: center;
-  color: ${colors.title}
-    ${({ active }) =>
-      active &&
-      css`
-        color: ${colors.male};
-      `};
+
+  color: ${colors.title};
+
+  ${({ active }) =>
+    active &&
+    css`
+      color: ${colors.male};
+    `};
 `;
 
 export const HtmlView = styled(Html).attrs({
@@ -82,3 +90,25 @@ export const HtmlView = styled(Html).attrs({
     },
   },
 })``;
+
+export const ImageContent = styled.ImageBackground`
+  height: 200px;
+
+  margin-bottom: 10px;
+`;
+
+export const Footer = styled.View`
+  position: absolute;
+  bottom: 0;
+  align-self: stretch;
+  align-content: center;
+
+  background-color: rgba(0, 0, 0, 0.3);
+  width: 100%;
+  padding: 10px;
+`;
+
+export const Description = styled(NunitoSemiBold)`
+  font-size: 12px;
+  color: #fff;
+`;

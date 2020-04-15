@@ -1,23 +1,25 @@
 import React from 'react';
 import ADIcon from 'react-native-vector-icons/AntDesign';
 import { withNavigation } from 'react-navigation';
+import { useSelector } from 'react-redux';
 
 import { BorderGradient, Container, Info, Title, Introduction } from './styles';
 
-function CardTopic({ navigation }) {
+function CardTopic({ navigation, topic }) {
+  const language =
+    useSelector(state => state.topics.language) === 1 ? 'br' : 'en';
   return (
     <Container
       onPress={() =>
-        navigation.navigate('Detail', { topic: { id: 1, name: 'Ola' } })
+        navigation.navigate('Detail', {
+          topic: { id: topic.id, name: topic[`title_${language}`] },
+        })
       }
     >
       <BorderGradient />
       <Info>
-        <Title>AAAaaaaa</Title>
-        <Introduction>
-          asdasdas dsadasdasdsadas dasdsadasd asdas dasd asd asd asd asda
-          sdasdasdasdas
-        </Introduction>
+        <Title>{topic[`title_${language}`]}</Title>
+        <Introduction>{topic[`introduction_${language}`]}</Introduction>
       </Info>
       <ADIcon size={25} color="#ccc" name="right" style={{ width: 'auto' }} />
     </Container>

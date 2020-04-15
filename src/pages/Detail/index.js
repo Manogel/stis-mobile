@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
+import { useSelector } from 'react-redux';
 
 import Header from '~/components/Header';
+import Loading from '~/components/Loading';
+import api from '~/services/api';
 import { Background } from '~/styles';
 
 import {
@@ -10,24 +13,57 @@ import {
   Button,
   ButtonName,
   HtmlView,
+  ImageContent,
+  Footer,
+  Description,
 } from './styles';
 
 export default function Detail({ navigation: { getParam, goBack } }) {
   const [page, setPage] = useState(1);
-
+  const [loading, setLoading] = useState(true);
+  const [topic, setTopic] = useState(1);
+  const language =
+    useSelector(state => state.topics.language) === 1 ? 'br' : 'en';
   const { id, name } = getParam('topic');
 
-  const htmlContent = `<ul><li><strong>Sintomas</strong></li></ul>
-<p>As Infec&ccedil;&otilde;es Sexualmente Transmiss&iacute;veis (IST) s&atilde;o causadas por v&iacute;rus, bact&eacute;rias ou outros &nbsp;microrganismos. Elas s&atilde;o transmitidas.As Infec&ccedil;&otilde;es Sexualmente Transmiss&iacute;veis (IST) s&atilde;o causadas por v&iacute;rus, bact&eacute;rias ou outros &nbsp;microrganismos. Elas s&atilde;o transmitidas.<strong><br></strong></p><ul><li><strong><strong>Sobre</strong></strong></li>
-</ul>
+  useEffect(() => {
+    api.get(`/topics/${id}`).then(response => {
+      setTopic(response.data);
+      setLoading(false);
+    });
+  }, [id]);
 
-<p>As Infec&ccedil;&otilde;es Sexualmente Transmiss&iacute;veis (IST) s&atilde;o causadas por v&iacute;rus, bact&eacute;rias ou outros &nbsp;microrganismos. Elas s&atilde;o transmitidas.As Infec&ccedil;&otilde;es Sexualmente Transmiss&iacute;veis (IST) s&atilde;o causadas por v&iacute;rus, bact&eacute;rias ou outros &nbsp;microrganismos. Elas s&atilde;o transmitidas.As Infec&ccedil;&otilde;es Sexualmente Transmiss&iacute;veis (IST) s&atilde;o causadas por v&iacute;rus, bact&eacute;rias ou outros &nbsp;microrganismos. Elas s&atilde;o transmitidas.<strong><strong><br></strong></strong></p>
+  const renderImages = useMemo(
+    () =>
+      topic?.files?.length > 0 ? (
+        topic.files?.map(file => (
+          <ImageContent
+            key={file.id}
+            source={{
+              uri: file.url,
+            }}
+          >
+            <Footer>
+              <Description>{file[`description_${language}`]}</Description>
+            </Footer>
+          </ImageContent>
+        ))
+      ) : (
+        <Description>Não há imagens!</Description>
+      ),
+    [language, topic]
+  );
 
-<p>
-	<br>
-</p>
+  const renderContent = useMemo(
+    () =>
+      page === 1 ? (
+        <HtmlView html={topic[`description_${language}`]} />
+      ) : (
+        renderImages
+      ),
+    [language, page, renderImages, topic]
+  );
 
-`;
   return (
     <>
       <Header title={name} goBack={goBack} />
@@ -41,9 +77,7 @@ export default function Detail({ navigation: { getParam, goBack } }) {
           </Button>
         </MainHeader>
         <BackgroundImage />
-        <Container>
-          <HtmlView html={htmlContent} />
-        </Container>
+        <Container>{loading ? <Loading /> : renderContent}</Container>
       </Background>
     </>
   );
